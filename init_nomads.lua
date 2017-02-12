@@ -52,6 +52,13 @@ table.insert(hook, '/sounds')
 --# Clear the shader
 clear_cache()
 
+--# Copy movie
+srcf = io.open(InitFileDir..'\\..\\gamedata\\nomads_load.scd')
+dstf = io.open(InitFileDir..'\\..\\movies\\nomads_load.scd', 'w')
+dstf:write(srcf:read("*a"))
+dstf:close()
+srcf:close()
+
 --# Now add our files to the path table. This is a bit tricky cause we need our files to be first in the list or
 --# we'll get all kinds of issues (simplest check: is there a weird icon in the campaign manager window? If yes then
 --# there are issues).
