@@ -1,21 +1,21 @@
-#################################################################################################
-## VARIABLES
-#################################################################################################
+--#################################################################################################
+--## VARIABLES
+--#################################################################################################
 
-# Edit these where needed.
+--# Edit these where needed.
 
-# Where can the uncompressed nomads files be found? Specify full path, with drive letter. Escape each \ with another \ . So for
-# each \ in the path there should be 2. Example: C:\\games\\Nomads mod\\files
+--# Where can the uncompressed nomads files be found? Specify full path, with drive letter. Escape each \ with another \ . So for
+--# each \ in the path there should be 2. Example: C:\\games\\Nomads mod\\files
 local DevPath = ''
 
-# Nomads datafile name + extension (in case we're not using DevPath)
+--# Nomads datafile name + extension (in case we're not using DevPath)
 local File = 'nomads.nmd'
 
-#################################################################################################
-## DO NOT EDIT
-#################################################################################################
+--#################################################################################################
+--## DO NOT EDIT
+--#################################################################################################
 
-# Some functions
+--# Some functions
 local function mount_dir(dir, mountpoint)
     table.insert(path, { dir = dir, mountpoint = mountpoint })
 end
@@ -41,20 +41,20 @@ local function clear_cache()
     end
 end
 
-########
+--########
 
-# Start, do original datapath file
+--# Start, do original datapath file
 dofile(InitFileDir..'\\SupComDataPath.lua')
-# Add our own hook to the list. Used to make our files overwrite existing files to ensure flawless operation.
+--# Add our own hook to the list. Used to make our files overwrite existing files to ensure flawless operation.
 table.insert(hook, '/nomadhook')
 table.insert(hook, '/sounds')
 
-# Clear the shader
+--# Clear the shader
 clear_cache()
 
-# Now add our files to the path table. This is a bit tricky cause we need our files to be first in the list or
-# we'll get all kinds of issues (simplest check: is there a weird icon in the campaign manager window? If yes then
-# there are issues).
+--# Now add our files to the path table. This is a bit tricky cause we need our files to be first in the list or
+--# we'll get all kinds of issues (simplest check: is there a weird icon in the campaign manager window? If yes then
+--# there are issues).
 local oldPath = path
 path = {}
 mount_dir(InitFileDir..'\\..\\gamedata\\'..File, '/')
@@ -64,4 +64,4 @@ for k, v in oldPath do
     table.insert(path, v)
 end
 
-# All done!
+--# All done!
